@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.audio.ard_audiothek" version="0.0.3" name="ARD Audiothek" provider-name="Stargazer">
+    <requires>
+        <import addon="xbmc.python" version="2.14.0"/>
+        <import addon="script.module.requests" version="2.18.4"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>audio</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">German ARD audio media center</summary>
+        <description>AddOn to access german public ARD audio media center.</description>
+        <disclaimer> 
+        </disclaimer>
+    </extension>
+</addon>
