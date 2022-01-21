@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-  <addon id="plugin.audio.ard_audiothek" version="0.0.4" name="ARD Audiothek" provider-name="Stargazer">
+  <addon id="plugin.audio.ard_audiothek" version="0.0.5" name="ARD Audiothek" provider-name="Stargazer">
       <requires>
           <!--import addon="xbmc.python" version="2.14.0"/-->
           <import addon="script.module.requests" version="2.18.4"/>
