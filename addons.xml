@@ -32,23 +32,6 @@
           </disclaimer>
       </extension>
   </addon>
-  <addon id="plugin.video.welt_mediathek" version="0.0.5" name="WELT" provider-name="Stargazer">
-      <requires>
-          <!--import addon="xbmc.python" version="2.14.0"/-->
-          <import addon="script.module.requests" version="2.18.4"/>
-          <import addon="script.module.beautifulsoup4" version="4.3.2"/>
-      </requires>
-      <extension point="xbmc.python.pluginsource" library="addon.py">
-          <provides>video</provides>
-      </extension>
-      <extension point="xbmc.addon.metadata">
-          <platform>all</platform>
-          <summary lang="en">German public TV</summary>
-          <description>AddOn to access WELT TV media center.</description>
-          <disclaimer> 
-          </disclaimer>
-      </extension>
-  </addon>
   <addon id="plugin.audio.radiode" name="Radio.de" provider-name="fivebanger" version="1.0.0">
     <requires>
       <import addon="xbmc.python" version="3.0.0" />
