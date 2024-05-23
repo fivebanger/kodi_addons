@@ -1,2 +1,2 @@
 # Radio.de
-AddOn to access broadcast streams provided by Radio.de.
+AddOn to access broadcast streams and podcasts provided by Radio.de.
