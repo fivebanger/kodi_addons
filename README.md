@@ -9,4 +9,4 @@ AddOn to access german public ARD audio media center.
 AddOn to access german public TV media center (ARD, ZDF, Arte, 3sat).
 
 ## Radio.de
-AddOn to access broadcast streams provided by Radio.de.
+AddOn to access broadcast streams and podcasts provided by Radio.de.
