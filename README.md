@@ -3,10 +3,10 @@
 Available add-ons:
 
 ## ARD Audiothek:
-AddOn to access german public ARD audio media center.
+Add-on to access german public ARD audio media center.
 
 ## PubTV:
-AddOn to access german public TV media center (ARD, ZDF, Arte, 3sat).
+Add-on to access german public TV media center (ARD, ZDF, Arte, 3sat).
 
 ## Radio.de
-AddOn to access broadcast streams and podcasts provided by Radio.de.
+Add-on to access broadcast streams and podcasts provided by Radio.de and Radio.net.
