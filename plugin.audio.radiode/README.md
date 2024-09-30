@@ -13,8 +13,9 @@ Example:
 ### Import a m3u file:
 Open add-on settings, "Data", "Import stations from m3u file" and follow the instructions.
 
-Example for a valid station description within the m3u file:
+Example for a valid .m3u file:
 ```
+#EXTM3U
 #EXTINF:-1 tvg-logo="http://my_custom_station.url/icon.jpg",my custom station
 http://my_custom_station.url/stream.mp3
 ```
