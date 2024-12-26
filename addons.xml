@@ -16,7 +16,7 @@
           </disclaimer>
       </extension>
   </addon>
-  <addon id="plugin.video.pubtv" version="0.0.42" name="PubTV" provider-name="Stargazer">
+  <addon id="plugin.video.pubtv" version="0.0.43" name="PubTV" provider-name="Stargazer">
       <requires>
         <import addon="xbmc.python" version="3.0.0"/>
           <import addon="script.module.requests" version="2.18.4"/>
