@@ -1,3 +1,8 @@
+1.1.13:
+	- network requests time out after 10 s, a slow or dead server no longer freezes the add-on / Kodi busy dialog
+	- connections opened to resolve a stream url are closed again
+	- fix crash when a station in a list has no streams
+
 1.1.12:
 	- fix search from web interfaces (e.g. Chorus2): plugin urls with trailing "/" caused a JSON error
 	- cancelled search no longer leaves Kodi waiting for a directory listing

@@ -37,6 +37,10 @@ class RadionetApi():
         self.user_agent = 'Radio.net - Web V5'
         self.base_url = 'https://prod.radio-api.net'
         self.logger = getLogger('radio_api')
+        # seconds. without a timeout a slow/dead server blocks the add-on (and Kodi's busy dialog) forever.
+        self.timeout = 10
+        # bytes. a playlist is small, don't read an audio stream which is served with a .m3u url.
+        self.max_playlist_size = 64 * 1024
     
     
     def set_logger(self, logger):
@@ -254,30 +258,34 @@ class RadionetApi():
 
     def resolve_url(self, url):
         resolve = True
-        
-        while resolve:
+        new_url = None
+        # guard against playlists pointing to each other / themselves
+        max_hops = 5
+
+        while resolve and max_hops:
             resolve = False
+            max_hops -= 1
             try:
-                req = Request(url)
-                req.add_header('accept-language', self.language)
-                req.add_header('user-agent', self.user_agent)
-                response = urlopen(req)
-                new_url = response.geturl()
-    
+                req = self._request(url)
+                # only the final url (after redirects) is needed. close the connection right away,
+                # otherwise the (endless) audio stream stays open.
+                with urlopen(req, timeout=self.timeout) as response:
+                    new_url = response.geturl()
+
                 if '.m3u' in new_url:
                     # m3u or m3u8 playlist
-                    req = Request(new_url)
-                    req.add_header('accept-language', self.language)
-                    req.add_header('user-agent', self.user_agent)
-                    response = urlopen(req, timeout=2).read()
-                    response = response.decode()
-                    
+                    req = self._request(new_url)
+                    with urlopen(req, timeout=self.timeout) as response:
+                        response = response.read(self.max_playlist_size)
+                    response = response.decode(errors='replace')
+
                     if 'http' in response:
                         # try to get a http url from playlist
                         response = response.split('\n')
                         new_url = None
                         
                         for item in response:
+                            item = item.strip()
                             if item.startswith('http'):
                                 url = item
                                 resolve = True
@@ -300,15 +308,20 @@ class RadionetApi():
         return new_url
 
 
+    def _request(self, url):
+        req = Request(url)
+        req.add_header('accept-language', self.language)
+        req.add_header('user-agent', self.user_agent)
+        return req
+
+
     def _open_url(self, url):
         result = []
         self.logger.debug(f'_open_url: {url}')
         # self.logger.error(f'_open_url: {url}')
         try:
-            req = Request(url)
-            req.add_header('accept-language', self.language)
-            req.add_header('user-agent', self.user_agent)
-            response = urlopen(req).read()
+            with urlopen(self._request(url), timeout=self.timeout) as response:
+                response = response.read()
         except Exception as err:
             self.logger.error(f'_open_url error: {err}')
             response = b''

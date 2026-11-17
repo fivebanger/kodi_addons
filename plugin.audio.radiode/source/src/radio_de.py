@@ -869,12 +869,14 @@ class RadioDE():
         if data:
             stations = data.get('playables', [])
             for item in stations:
+                streams = item.get('streams') or [{}]
                 record = {'data': {}, 'mode': ''}
                 record['mode'] = 'play_stream'
                 record['data']['id'] = item['id']
                 record['data']['name'] = item['name']
-                record['data']['icon_url'] = item['logo300x300']
-                record['data']['stream_url'] = item['streams'][0]['url']
+                record['data']['icon_url'] = item.get('logo300x300', '')
+                # play_stream() fetches the current streams by id, stream_url is only a fallback / for export
+                record['data']['stream_url'] = streams[0].get('url', '')
                 result.append(record)
 
         return result
