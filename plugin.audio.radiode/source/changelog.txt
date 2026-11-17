@@ -1,0 +1,61 @@
+1.1.11:
+	- fix incompatibility with Kodi <= 19.x for ListItem.getMusicInfoTag()
+
+1.1.10:
+	- internal change: calling stations via JSON rpc improved
+
+1.1.9:
+	- additional fix for "My stations"
+
+1.1.8:
+	- calling station from "My stations" issue fixed
+
+1.1.7
+	- calling station from favorites menu issue fixed
+	- deprecated function ListItem.setInfo() replaced
+
+1.1.6:
+	- Filter possibilities for "browser by language/country/region/city" enhanced
+	- Fallback from https to http for stream links added
+	
+1.1.5:
+	- fix m3u8 playlist resolve error
+	
+1.1.4:
+	- fix 403 error for some stations
+	- fix handling for max number of entries (recently list and search list) 
+
+1.1.3:
+	- "recetly played songs" now shown as text view
+	- bugfix for "Remove from search"
+
+1.1.2:
+	- "sort by" method in "settings" changed (pls. re-configure when set to "last added")
+	- JSON-rpc: fuction play_station() added in order to play a stream by just providing a station id
+	- minor improvements and fixes
+
+1.1.1:
+	- menu handling changed (fixes issue with json remote control)
+
+1.1.0:
+	- podcasts added
+	- import stations from m3u file added
+
+1.0.4:
+	- prevent Kodi crash in case of a play_stream() error
+	- sort method for "my stations" added
+	- "hide fanart background" feature added
+	- custom stations: provide a blank id in stations.jsn to mark a station as custom station and edit stream_url and icon_url accordingly
+
+1.0.3:
+	- avoid to start in full screen mode on play
+
+1.0.2:
+	- browse by language, country, city, region added
+
+1.0.1:
+	- region feature added (genres and topics results based on region)
+	- minor fixes
+
+1.0.0:
+    - Initial Release
