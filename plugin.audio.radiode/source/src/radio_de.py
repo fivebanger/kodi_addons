@@ -228,6 +228,10 @@ class RadioDE():
         
         if '' == query:
             query = get_text_from_keyboard()
+            if '' == query:
+                # search cancelled
+                self._end_of_directory_cancelled()
+                return
             self._add_to_search(query, self.search_list_stations, 'do_search_stations')
 
         api_result = self.radio.search(query, count, offset)
@@ -662,10 +666,13 @@ class RadioDE():
         
         if '' == query:
             query = get_text_from_keyboard()
+            if '' == query:
+                # search cancelled
+                self._end_of_directory_cancelled()
+                return
             self._add_to_search(query, self.search_list_podcasts, 'do_search_podcasts')
 
         api_result = self.radio.search_podcast(query, count, offset)
-        print(api_result)
         result = self._unify_podcasts(api_result)
         result = self._add_next(api_result, result, count, offset, 'do_search_podcasts', query=query)
         self._handle_result('menu_list', result, cm_menu='add_podcast_cm')
@@ -750,6 +757,11 @@ class RadioDE():
     #==================================================
     #--- private functions
     #==================================================
+    def _end_of_directory_cancelled(self):
+        # tell Kodi that no listing will follow, otherwise Kodi (or a web interface) keeps waiting
+        xbmcplugin.endOfDirectory(self.addon_handle, succeeded=False)
+
+
     def _get_count(self, data, count=20, offset=0):
         count = data.get('count', count)
         offset = data.get('offset', offset)

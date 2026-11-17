@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.audio.radiode" name="Radio.de" provider-name="fivebanger" version="1.1.11">
+<addon id="plugin.audio.radiode" name="Radio.de" provider-name="fivebanger" version="1.1.12">
   <requires>
     <import addon="xbmc.python" version="3.0.0" />
     <import addon="script.module.requests" version="2.18.4"/>

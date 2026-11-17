@@ -1,3 +1,7 @@
+1.1.12:
+	- fix search from web interfaces (e.g. Chorus2): plugin urls with trailing "/" caused a JSON error
+	- cancelled search no longer leaves Kodi waiting for a directory listing
+
 1.1.11:
 	- fix incompatibility with Kodi <= 19.x for ListItem.getMusicInfoTag()
 

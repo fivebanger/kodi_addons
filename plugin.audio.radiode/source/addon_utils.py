@@ -57,8 +57,8 @@ def get_text_from_keyboard(heading="", text="", hidden=False):
     keyboard.doModal()
     if keyboard.isConfirmed():
         string = keyboard.getText()
-    if "" == string:
-        exit(0)
+    # return "" if cancelled, caller has to end the directory listing.
+    # don't call exit() here: Kodi would keep waiting for the listing (e.g. endless spinner in web interfaces).
     return string
 
 
@@ -120,13 +120,8 @@ class Dispatcher():
         xbmc.log('[{}]: Dispatcher AddOn args: {}'.format(LOG_TAG, self.addon_args), log_level)
         handle_err = True
         
-        if {} == self.addon_args:
-            mode = 'root'
-            data = {}
-        else:
-            mode = self.addon_args['mode']
-            data = self.addon_args['data']
-            data = json.loads(data)
+        mode = self.addon_args.get('mode', 'root').rstrip('/') or 'root'
+        data = self._parse_data(self.addon_args.get('data', '{}'))
         
         result = inspect.getmembers(self.appl, predicate=inspect.ismethod)
         
@@ -142,7 +137,22 @@ class Dispatcher():
         
         if handle_err:
             xbmc.log('[{}]: Dispatcher mode error: {}'.format(LOG_TAG, mode), xbmc.LOGERROR)
-            
+
+
+    def _parse_data(self, data):
+        # Kodi (e.g. when called from Chorus2 web interface via JSON-RPC) may append a trailing "/" to
+        # the plugin url, i.e. data='{"query": "swr3"}/'. raw_decode() ignores anything behind the JSON object.
+        try:
+            data, _ = json.JSONDecoder().raw_decode(data.strip())
+        except ValueError as err:
+            xbmc.log('[{}]: Dispatcher data error: {}, data: {}'.format(LOG_TAG, err, data), xbmc.LOGERROR)
+            data = {}
+
+        if not isinstance(data, dict):
+            data = {}
+
+        return data
+
 
 class ListItem():
 
