@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="Radio">
+		<setting id="radio_region" type="select" label="Region" values="AT|AU|BR|CA|CO|DE|DK|ES|FR|IE|IT|MX|NL|NZ|PL|PT|SE|UK|US|ZA" default="DE"/>
+		<setting id="sortmethod_stations" type="enum" label="Sort &quot;my stations&quot; by" values="alphabet|last added" default="0"/>
+		<setting id="sortmethod_podcasts" type="enum" label="Sort &quot;my podcasts&quot; by" values="alphabet|last added" default="0"/>
+		<setting id="use_fanart" type="bool" label="Use fanart background" default="true"/>
+		<setting id="current_view" type="text" visible="false" default="radio"/>
+		<setting label="Filter reults for &quot;browse by language/country/region/city&quot;" type="lsep"/>
+		<setting id="min_cnt" type="number" label="Minimum number of available stations to get shown" default="100"/>
+		<setting id="show_all_languages" type="bool" label="Show always all languages results" default="false"/>
+		<setting id="show_all_countries" type="bool" label="Show always all countries results" default="false"/>
+		<setting id="show_all_regions" type="bool" label="Show always all regions results" default="false"/>
+		<setting id="show_all_cities" type="bool" label="Show always all cities results" default="false"/>
+	</category>
+	<category label="Data">
+		<setting id="m3u_file" label="IPTV Simple m3u file for export" type="file" mask="*.m3u" source="auto"/>
+		<setting id="import_iptv" label="Import stations from m3u file" action="RunPlugin(plugin://plugin.audio.radiode/?mode=import_iptv&data={})" type="action"/>
+		<setting id="import_iptv_path" label="" type="text" visible="false" default=""/>
+		<setting id="use_xchange_folder" type="bool" label="Use custom &quot;my stations&quot; folder" default="false"/>
+		<setting id="xchange_folder" label="&quot;my stations&quot; folder" type="folder" source="auto" visible="eq(-1,true)"/>
+	</category>
+</settings>
